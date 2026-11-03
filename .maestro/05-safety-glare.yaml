@@ -1,0 +1,24 @@
+appId: host.exp.Exponent
+name: Safety 3 - glare hides the buttons, so it asks instead of guessing
+tags: [scenario, safety]
+---
+- runFlow: subflows/close-open-guide.yaml
+- openLink: exp://127.0.0.1:8081/--/guide/glare
+- extendedWaitUntil:
+    visible: "I can’t see the buttons clearly."
+    timeout: 20000
+- waitForAnimationToEnd
+- assertVisible: "Not sure, so not guessing"
+- takeScreenshot: e2e-screenshots/glare-1-unsure
+- tapOn:
+    id: "action-Try again"
+
+- assertVisible: "Now I can see. It asks: window or aisle?"
+- takeScreenshot: e2e-screenshots/glare-2-clear
+- tapOn:
+    id: "action-Window"
+
+- assertVisible: "Back on track."
+- takeScreenshot: e2e-screenshots/glare-3-done
+- tapOn:
+    id: "action-Finish"

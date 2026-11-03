@@ -1,0 +1,34 @@
+appId: host.exp.Exponent
+name: Demo 2 - Daniel is guided to the card slot
+tags: [scenario, demo]
+---
+- runFlow: subflows/close-open-guide.yaml
+- openLink: exp://127.0.0.1:8081/--/guide/ticket
+- extendedWaitUntil:
+    visible: "Ticket to the airport, S$ 4.20."
+    timeout: 20000
+- waitForAnimationToEnd
+- takeScreenshot: e2e-screenshots/ticket-1-read
+- tapOn:
+    id: "action-Guide me"
+
+- assertVisible: "Move down, and a little to the left."
+- assertVisible: "Guiding your hand"
+- takeScreenshot: e2e-screenshots/ticket-2-far
+- tapOn:
+    id: "action-I moved"
+
+- assertVisible: "Stop. The slot is right under your fingers."
+- takeScreenshot: e2e-screenshots/ticket-3-near
+- tapOn:
+    id: "action-Card is in"
+
+- assertVisible: "Payment accepted. Your ticket is in the tray below."
+- takeScreenshot: e2e-screenshots/ticket-4-printed
+- tapOn:
+    id: "action-I have it"
+
+- assertVisible: "Ticket printed. Take it from the slot."
+- takeScreenshot: e2e-screenshots/ticket-5-done
+- tapOn:
+    id: "action-Finish"

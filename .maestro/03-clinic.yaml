@@ -1,0 +1,29 @@
+appId: host.exp.Exponent
+name: Demo 3 - Rosa checks in at a Japanese kiosk, guided in Tagalog
+tags: [scenario, demo]
+---
+- runFlow: subflows/close-open-guide.yaml
+- openLink: exp://127.0.0.1:8081/--/guide/clinic
+- extendedWaitUntil:
+    visible: "Ito ang check-in kiosk ng klinika."
+    timeout: 20000
+- waitForAnimationToEnd
+- assertVisible: "Japanese screen, Tagalog steps"
+- takeScreenshot: e2e-screenshots/clinic-1-read
+- tapOn:
+    id: "action-Oo, dala ko"
+
+- assertVisible: "Pindutin ang asul na button sa kaliwa."
+- takeScreenshot: e2e-screenshots/clinic-2-press
+- tapOn:
+    id: "action-Tapos na"
+
+- assertVisible: "Tapos na. Ang numero mo ay 27."
+- takeScreenshot: e2e-screenshots/clinic-3-number
+- tapOn:
+    id: "action-Salamat"
+
+- assertVisible: "Naka-check-in ka na. Numero 27."
+- takeScreenshot: e2e-screenshots/clinic-4-done
+- tapOn:
+    id: "action-Finish"

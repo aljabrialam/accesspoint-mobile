@@ -1,0 +1,39 @@
+appId: host.exp.Exponent
+name: Mr Lim orders lunch at a self-order kiosk
+tags: [scenario, demo]
+---
+- runFlow: subflows/close-open-guide.yaml
+- openLink: exp://127.0.0.1:8081/--/guide/order
+- extendedWaitUntil:
+    visible: "Eat here, or take away?"
+    timeout: 20000
+- waitForAnimationToEnd
+- assertVisible: "Asking, not guessing"
+- takeScreenshot: e2e-screenshots/order-1-where
+- tapOn:
+    id: "action-Eat here"
+
+- assertVisible: "Chicken rice is the top-left picture."
+- takeScreenshot: e2e-screenshots/order-2-menu
+- tapOn:
+    id: "action-I tapped it"
+
+- assertVisible: "It asks: add a drink for S$ 1.60?"
+- takeScreenshot: e2e-screenshots/order-3-drink
+- tapOn:
+    id: "action-No thanks"
+
+- assertVisible: "Total S$ 4.50. Tap your card on the reader below the screen."
+- takeScreenshot: e2e-screenshots/order-4-pay
+- tapOn:
+    id: "action-I tapped it"
+
+- assertVisible: "Paid. Your order number is 142."
+- takeScreenshot: e2e-screenshots/order-5-number
+- tapOn:
+    id: "action-I have it"
+
+- assertVisible: "Order 142. Lunch is on its way."
+- takeScreenshot: e2e-screenshots/order-6-done
+- tapOn:
+    id: "action-Finish"

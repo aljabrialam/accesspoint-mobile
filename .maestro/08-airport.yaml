@@ -1,0 +1,34 @@
+appId: host.exp.Exponent
+name: Amara checks in alone for her first flight
+tags: [scenario, demo]
+---
+- runFlow: subflows/close-open-guide.yaml
+- openLink: exp://127.0.0.1:8081/--/guide/airport
+- extendedWaitUntil:
+    visible: "Put your passport on the glass, photo page down."
+    timeout: 20000
+- waitForAnimationToEnd
+- takeScreenshot: e2e-screenshots/airport-1-passport
+- tapOn:
+    id: "action-It’s on the glass"
+
+- assertVisible: "It found Amara Okafor, flying to Singapore. Is that you?"
+- assertVisible: "Asking, not guessing"
+- takeScreenshot: e2e-screenshots/airport-2-name
+- tapOn:
+    id: "action-Yes, that’s me"
+
+- assertVisible: "Window or aisle seat?"
+- takeScreenshot: e2e-screenshots/airport-3-seat
+- tapOn:
+    id: "action-Window"
+
+- assertVisible: "Your boarding pass is printing on the right."
+- takeScreenshot: e2e-screenshots/airport-4-print
+- tapOn:
+    id: "action-I have it"
+
+- assertVisible: "Checked in. Gate C22, boarding 10:40."
+- takeScreenshot: e2e-screenshots/airport-5-done
+- tapOn:
+    id: "action-Finish"

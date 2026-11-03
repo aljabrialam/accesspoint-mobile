@@ -1,0 +1,43 @@
+appId: host.exp.Exponent
+name: Demo 1 - Mrs Tan withdraws cash at an ATM
+tags: [scenario, demo]
+---
+- runFlow: subflows/close-open-guide.yaml
+- openLink: exp://127.0.0.1:8081/--/guide/atm
+- extendedWaitUntil:
+    visible: "I can see an ATM."
+    timeout: 20000
+- waitForAnimationToEnd
+- assertVisible: "Step 1 of 5"
+- takeScreenshot: e2e-screenshots/atm-1-see
+- tapOn:
+    id: "action-Card is in"
+
+- assertVisible: "The screen asks which account to use."
+- assertVisible: "Asking, not guessing"
+- takeScreenshot: e2e-screenshots/atm-2-ask
+- tapOn:
+    id: "action-Savings"
+
+- assertVisible: "Type your PIN now."
+- assertVisible: "Camera paused"
+- assertVisible: "I can’t see your PIN"
+- takeScreenshot: e2e-screenshots/atm-3-pin
+- tapOn:
+    id: "action-Done"
+
+- assertVisible: "The screen shows S$ 100. Press Confirm, on the right."
+- takeScreenshot: e2e-screenshots/atm-4-confirm
+- tapOn:
+    id: "action-I pressed it"
+
+- assertVisible: "Your cash is coming out at the bottom right."
+- takeScreenshot: e2e-screenshots/atm-5-cash
+- tapOn:
+    id: "action-I have them"
+
+- assertVisible: "All done. Take your card and your cash."
+- assertVisible: "PIN frames sent"
+- takeScreenshot: e2e-screenshots/atm-6-done
+- tapOn:
+    id: "action-Finish"

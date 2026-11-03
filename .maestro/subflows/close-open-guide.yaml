@@ -1,0 +1,11 @@
+appId: host.exp.Exponent
+---
+# Leaves any guide screen a previous flow left open, so deep links always start a fresh scenario.
+- runFlow:
+    when:
+      visible:
+        id: "guide-close"
+    commands:
+      - tapOn:
+          id: "guide-close"
+      - waitForAnimationToEnd

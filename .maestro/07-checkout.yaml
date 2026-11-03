@@ -1,0 +1,34 @@
+appId: host.exp.Exponent
+name: Siti uses self-checkout, guided in Bahasa Indonesia
+tags: [scenario, demo]
+---
+- runFlow: subflows/close-open-guide.yaml
+- openLink: exp://127.0.0.1:8081/--/guide/checkout
+- extendedWaitUntil:
+    visible: "Arahkan barcode ke kaca pemindai."
+    timeout: 20000
+- waitForAnimationToEnd
+- takeScreenshot: e2e-screenshots/checkout-1-scan
+- tapOn:
+    id: "action-Sudah bip"
+
+- assertVisible: "Layar bilang: ada barang tak dikenal di area kantong."
+- assertVisible: "Menjelaskan pesan mesin"
+- takeScreenshot: e2e-screenshots/checkout-2-bagging
+- tapOn:
+    id: "action-Sudah"
+
+- assertVisible: "Total S$ 12.40. Tempelkan kartu di mesin kecil kanan layar."
+- takeScreenshot: e2e-screenshots/checkout-3-pay
+- tapOn:
+    id: "action-Sudah"
+
+- assertVisible: "Pembayaran berhasil. Ambil belanjaanmu."
+- takeScreenshot: e2e-screenshots/checkout-4-receipt
+- tapOn:
+    id: "action-Terima kasih"
+
+- assertVisible: "Selesai. Belanjaan sudah dibayar."
+- takeScreenshot: e2e-screenshots/checkout-5-done
+- tapOn:
+    id: "action-Finish"

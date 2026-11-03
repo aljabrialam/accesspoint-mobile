@@ -1,0 +1,26 @@
+appId: host.exp.Exponent
+name: Safety 2 - the screen asks for a transfer she didn't request
+tags: [scenario, safety]
+---
+- runFlow: subflows/close-open-guide.yaml
+- openLink: exp://127.0.0.1:8081/--/guide/mismatch
+- extendedWaitUntil:
+    visible: "This screen wants to send S$ 1,000."
+    timeout: 20000
+- waitForAnimationToEnd
+- assertVisible: "This isn’t what you asked for"
+- assertVisible: "Stopped"
+- takeScreenshot: e2e-screenshots/mismatch-1-stop
+- tapOn:
+    id: "action-I pressed Cancel"
+
+- assertVisible: "Cancelled. Nothing was sent."
+- takeScreenshot: e2e-screenshots/mismatch-2-safe
+- tapOn:
+    id: "action-I have my card"
+
+- assertVisible: "Stopped safely. Nothing was sent."
+- assertVisible: "S$ 0"
+- takeScreenshot: e2e-screenshots/mismatch-3-done
+- tapOn:
+    id: "action-Finish"

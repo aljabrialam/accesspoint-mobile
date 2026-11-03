@@ -1,0 +1,37 @@
+appId: host.exp.Exponent
+name: Voice - Spanish speaker drives the ATM by voice
+tags: [voice, i18n]
+---
+- runFlow: subflows/close-open-guide.yaml
+- openLink: exp://127.0.0.1:8081/--/guide/atm?lang=es
+- extendedWaitUntil:
+    visible: "I can see an ATM."
+    timeout: 20000
+- waitForAnimationToEnd
+- assertVisible: "Paso 1 de 5"
+- tapOn:
+    id: "voice-mic"
+- assertVisible: "Prueba a decir"
+- assertVisible: "“repite”"
+- takeScreenshot: e2e-screenshots/voice-1-suggestions
+
+# "repite" repeats the step instead of moving on
+- tapOn:
+    id: "say-1"
+- assertVisible: "Paso 1 de 5"
+
+- tapOn:
+    id: "voice-mic"
+- tapOn:
+    id: "say-0"
+- assertVisible: "The screen asks which account to use."
+- assertVisible: "Paso 2 de 5"
+
+- tapOn:
+    id: "voice-mic"
+- tapOn:
+    id: "say-0"
+- assertVisible: "Type your PIN now."
+- assertVisible: "Cámara en pausa"
+- assertVisible: ".*Nunca veo tu PIN.*"
+- takeScreenshot: e2e-screenshots/voice-2-pin-spanish

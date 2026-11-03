@@ -1,0 +1,20 @@
+appId: host.exp.Exponent
+name: Sticker start - scanning the machine's QR opens one screen with one button
+tags: [start]
+---
+- runFlow: subflows/close-open-guide.yaml
+- openLink: exp://127.0.0.1:8081/--/start/atm
+- extendedWaitUntil:
+    visible: "Point your phone at the ATM."
+    timeout: 20000
+- waitForAnimationToEnd
+- assertVisible: "Opened from the sticker on the ATM"
+- assertVisible: "I never look at your PIN. The camera switches off when a machine asks for it."
+- takeScreenshot: e2e-screenshots/start-1-sticker
+- tapOn:
+    id: "start-button"
+- extendedWaitUntil:
+    visible: "I can see an ATM."
+    timeout: 10000
+- assertVisible: "Step 1 of 5"
+- takeScreenshot: e2e-screenshots/start-2-guiding
