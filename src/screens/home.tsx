@@ -56,9 +56,9 @@ export function Home() {
         <FieldGroup.Section title="Try it like a stranger would">
           <ListItem
             testID="open-sticker-start"
-            onPress={() => router.push({ pathname: '/start/[machine]', params: { machine: 'atm' } })}
+            onPress={() => router.push({ pathname: '/start/[machine]', params: { machine: 'airport' } })}
             leading={leading('qrcode')}
-            supportingText={secondary('What opens when you scan the “Need help? Scan me” sticker on an ATM.')}>
+            supportingText={secondary('What opens when you scan the “Need help? Scan me” sticker on a check-in kiosk.')}>
             Start from a machine sticker
           </ListItem>
         </FieldGroup.Section>
@@ -131,7 +131,7 @@ function Hero() {
         <Pressable
           testID="start-guide"
           accessibilityRole="button"
-          onPress={() => openGuide('atm')}
+          onPress={() => openGuide('airport')}
           style={({ pressed }) => ({
             height: 54,
             borderRadius: radius.button,

@@ -1,25 +1,25 @@
 appId: host.exp.Exponent
-name: Safety 2 - the screen asks for a transfer she didn't request
+name: Safety 1 - self-checkout total is ten times the item price
 tags: [scenario, safety]
 ---
 - runFlow: subflows/close-open-guide.yaml
 - openLink: exp://127.0.0.1:8081/--/guide/mismatch
 - extendedWaitUntil:
-    visible: "This screen wants to send S$ 1,000."
+    visible: ".*for one milk.*"
     timeout: 20000
 - waitForAnimationToEnd
-- assertVisible: "This isn’t what you asked for"
+- assertVisible: "That total looks wrong"
 - assertVisible: "Stopped"
 - takeScreenshot: e2e-screenshots/mismatch-1-stop
 - tapOn:
     id: "action-I pressed Cancel"
 
-- assertVisible: "Cancelled. Nothing was sent."
+- assertVisible: "Cancelled. Nothing was paid."
 - takeScreenshot: e2e-screenshots/mismatch-2-safe
 - tapOn:
-    id: "action-I have my card"
+    id: "action-OK, thanks"
 
-- assertVisible: "Stopped safely. Nothing was sent."
+- assertVisible: "Stopped safely. Nothing was paid."
 - assertVisible: "S$ 0"
 - takeScreenshot: e2e-screenshots/mismatch-3-done
 - tapOn:

@@ -1,56 +1,39 @@
-# Welcome to your Expo app 👋
+# AccessPoint iPhone app
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+**Stuck at a machine? Point your phone. Hear the next step.**
 
-## Get started
+The iPhone app for [AccessPoint](https://github.com/aljabrialam/accesspoint), an assistant for older people, blind and low-vision people, and migrants at self-service machines. Built for the Meta Global AI Developer Hackathon 2026.
 
-1. Install dependencies
+▶ [Watch the 3-minute demo](https://youtu.be/ae8K5ZCQfSM) · [Main repository](https://github.com/aljabrialam/accesspoint) · [Try the live bot in your browser](https://accesspoint-bot.aljabrialam.workers.dev/try)
 
-   ```bash
-   npm install
-   ```
+## What it shows
 
-2. Start the app
+The full camera experience in **scenario mode**: scripted steps on demo kiosks we drew, labelled as such on every screen. The live photo pipeline (Muse Spark, SAM 3.1, Muse Voice) runs in the [Messenger, WhatsApp and Telegram bot](https://github.com/aljabrialam/accesspoint/tree/main/bot).
 
-   ```bash
-   npx expo start
-   ```
+| Scenario | What it demonstrates |
+|---|---|
+| Airport check-in (Amara) | Opened from a machine sticker; answers by voice; asks instead of guessing |
+| Train ticket (Daniel, blind) | Guides a hand to the card slot |
+| Clinic kiosk in Japan (Rosa) | Steps in Tagalog for a Japanese screen |
+| Food kiosk (Mr Lim) | Reads the menu |
+| Self-checkout (Siti) | Steps in Bahasa Indonesia, explains machine errors |
+| ATM (Mrs Tan) | PIN mode: camera off, nothing sent |
+| Safety: wrong total | S$42.00 for one S$4.20 item: stop, press Cancel |
+| Safety: glare | Can't read clearly, so it asks for a better angle |
 
-In the output, you'll find options to open the app in a
+Plus the sticker start screen, voice in 25 languages, natural spoken guidance, and a "How we keep you safe" screen.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## Run it
 
-You can start developing by editing the files inside the **src/app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+```
+npm install
+npx expo start        # press i for the iOS Simulator (Expo Go)
+npm run e2e           # 11 Maestro flows (Metro running, app open in Expo Go)
+npm run voice:generate  # regenerate spoken clips after changing scenario text
 ```
 
-This command will move the starter code to the **example** directory and create a blank **src/app** directory where you can start developing.
+Expo SDK 58, Expo Router, React Native. Project notes: [AGENTS.md](AGENTS.md).
 
-### Other setup steps
+## Licence
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+MIT. See [LICENSE](LICENSE).
