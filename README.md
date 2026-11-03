@@ -1,5 +1,7 @@
 # AccessPoint iPhone app
 
+[![app checks](https://img.shields.io/github/actions/workflow/status/aljabrialam/accesspoint-mobile/ci.yml?branch=main&style=flat-square&label=typecheck%20%2B%20lint&logo=githubactions&logoColor=white)](https://github.com/aljabrialam/accesspoint-mobile/actions/workflows/ci.yml) ![Expo](https://img.shields.io/github/package-json/dependency-version/aljabrialam/accesspoint-mobile/expo?style=flat-square&label=Expo&logo=expo&logoColor=white&color=000020) ![License](https://img.shields.io/github/license/aljabrialam/accesspoint-mobile?style=flat-square&color=2B47C9)
+
 **Stuck at a machine? Point your phone. Hear the next step.**
 
 The iPhone app for [AccessPoint](https://github.com/aljabrialam/accesspoint), an assistant for older people, blind and low-vision people, and migrants at self-service machines. Built for the Meta Global AI Developer Hackathon 2026.
